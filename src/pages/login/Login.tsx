@@ -34,7 +34,7 @@ const Login = () => {
             alignItems: 'center',
           }}>
           <Image
-            source={require('../assets/logo/logoWithoutBackground.png')}
+            source={require('../../assets/logo/logoWithoutBackground.png')}
             style={{width: 200, height: 150}}
           />
 

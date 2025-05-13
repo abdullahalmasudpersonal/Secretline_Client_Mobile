@@ -1,11 +1,13 @@
 import React from 'react';
-
-import Login from './src/pages/Login';
+import { NavigationContainer } from '@react-navigation/native';
+import RootNavigator from './src/components/navigation';
 
 function App(): React.JSX.Element {
   return (
     <>
-      <Login />
+      <NavigationContainer>
+        <RootNavigator />
+      </NavigationContainer>
     </>
   );
 }
