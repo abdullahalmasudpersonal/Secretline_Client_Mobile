@@ -1,15 +1,16 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import RootNavigator from './src/components/navigation';
+import Login from './src/pages/login/Login';
 
 function App(): React.JSX.Element {
   return (
     <>
-      <NavigationContainer>
-        <RootNavigator />
-      </NavigationContainer>
+    <Login/>
+    {/* <View>
+     <Text>lksdj</Text>
+    </View> */}
     </>
   );
 }
+
 
 export default App;

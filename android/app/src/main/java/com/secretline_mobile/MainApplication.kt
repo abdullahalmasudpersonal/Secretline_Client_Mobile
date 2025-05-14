@@ -1,4 +1,4 @@
-package com.secretline_client_mobile
+package com.secretline_mobile
 
 import android.app.Application
 import com.facebook.react.PackageList
