@@ -1,5 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+
+import React, { useState } from 'react';
 import {
   Image,
   ScrollView,
@@ -20,32 +20,17 @@ const Login = () => {
   };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        experimental_backgroundImage:
-          'lbackground-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-      }}>
-      <ScrollView contentContainerStyle={{flexGrow: 1}}>
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+    <View style={styles.login}>
+      <ScrollView contentContainerStyle={styles.loginScrollView} >
+        <View style={styles.loginView}>
           <Image
             source={require('../../assets/logo/logoWithoutBackground.png')}
-            style={{width: 200, height: 150}}
+            style={styles.loginLogoImage}
           />
 
           <Text
-            style={{
-              color: 'purple',
-              fontWeight: 'bold',
-              fontSize: 30,
-              marginBottom: 30,
-            }}>
-            Welcome back.
+            style={styles.loginWelcomeText}>
+            Welcome back.s
           </Text>
 
           <TextInput
@@ -66,7 +51,7 @@ const Login = () => {
             value={password}
             onChangeText={setPassword}
           />
-          <Text style={{marginRight: -180, marginTop: -10, color: 'red'}}>
+          <Text style={styles.forgetBtn}>
             Forget password?
           </Text>
 
@@ -74,9 +59,9 @@ const Login = () => {
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
 
-          <Text style={{marginTop: 15}}>
+          <Text style={styles.changeToSingUp}>
             Don't have an account?
-            <Text style={{color: 'purple', fontWeight: 600}}> Sign up</Text>
+            <Text style={styles.changeToSingUpBtn}> Sign up</Text>
           </Text>
         </View>
       </ScrollView>
@@ -84,22 +69,27 @@ const Login = () => {
   );
 };
 const styles = StyleSheet.create({
-  container: {
+  login: {
+    flex: 1,
+    experimental_backgroundImage:
+      'lbackground-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+  },
+  loginScrollView: {
     flexGrow: 1,
+  },
+  loginView: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#f5f7fa',
   },
-  logo: {
+  loginLogoImage: {
     width: 200,
-    height: 200,
-    marginBottom: 10,
+    height: 150,
   },
-  title: {
-    fontSize: 28,
+  loginWelcomeText: {
     color: 'purple',
     fontWeight: 'bold',
+    fontSize: 30,
     marginBottom: 30,
   },
   input: {
@@ -111,6 +101,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     marginBottom: 15,
     backgroundColor: '#fff',
+  },
+  forgetBtn: {
+    marginRight: -180,
+    marginTop: -10,
+    color: 'red',
   },
   button: {
     width: '80%',
@@ -128,6 +123,13 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  changeToSingUp: {
+    marginTop: 15,
+  },
+  changeToSingUpBtn: {
+    color: 'purple',
+    fontWeight: 600,
   },
 });
 export default Login;
