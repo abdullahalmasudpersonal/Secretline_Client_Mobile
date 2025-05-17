@@ -1,15 +1,20 @@
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import Login from './src/pages/login/Login';
-import Register from './src/pages/login/Register';
+import AppNavigator from './src/navigation/AppNavigator';
+// import Login from './src/pages/login/Login';
+// import Register from './src/pages/login/Register';
 
 function App(): React.JSX.Element {
   return (
     <>
-    <Login/>
+    {/* <Login/> */}
     {/* <Register/> */}
     {/* <View>
      <Text>lksdj</Text>
     </View> */}
+     <NavigationContainer>
+      <AppNavigator />
+     </NavigationContainer>
     </>
   );
 }
