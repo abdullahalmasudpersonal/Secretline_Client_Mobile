@@ -9,9 +9,14 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
+import { ROUTES } from '../../constants/routes';
+import { RootStackParamList } from '../../types/navigation.types';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, typeof ROUTES.LOGIN>;
 
 const Loginscreen = () => {
-      const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp>();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -62,10 +67,10 @@ const Loginscreen = () => {
                     </TouchableOpacity>
 
                     <Text style={styles.changeToSingUp}>
-                        Don't have an account?
-                        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                            <Text style={styles.changeToSingUpBtn}>Sign up</Text>
-                        </TouchableOpacity>
+                        Don't have an account?&nbsp;
+                        {/* <TouchableOpacity > */}
+                            <Text onPress={() => navigation.navigate(ROUTES.REGISTER)} style={styles.changeToSingUpBtn}>Sign up</Text>
+                        {/* </TouchableOpacity> */}
                     </Text>
                 </View>
             </ScrollView>
