@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import {
+    Alert,
     Image,
     ScrollView,
     StyleSheet,
@@ -10,20 +11,22 @@ import {
     View,
 } from 'react-native';
 import { ROUTES } from '../../constants/routes';
-import { RootStackParamList } from '../../types/navigation.types';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NavigationProp } from '../../types/navigation.types';
 
-type NavigationProp = NativeStackNavigationProp<RootStackParamList, typeof ROUTES.LOGIN>;
+//  type NavigationProp = NativeStackNavigationProp<RootStackParamList, typeof ROUTES.LOGIN>;
 
 const Loginscreen = () => {
-    const navigation = useNavigation<NavigationProp>();
+    // const navigation = useNavigation<NavigationProp>();
+    const navigation = useNavigation<NavigationProp<typeof ROUTES.LOGIN>>();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = () => {
-        console.log('Email:', email);
-        console.log('Password:', password);
-        // এখানে লগইন প্রক্রিয়া পরিচালনা করো (API call, validation, etc.)
+        if (!email || !password) {
+            Alert.alert('Error', 'Please fill all fields');
+            return;
+        }
+        
     };
 
     return (
@@ -37,7 +40,7 @@ const Loginscreen = () => {
 
                     <Text
                         style={styles.loginWelcomeText}>
-                        Welcome back.s
+                        Welcome back
                     </Text>
 
                     <TextInput
@@ -69,7 +72,7 @@ const Loginscreen = () => {
                     <Text style={styles.changeToSingUp}>
                         Don't have an account?&nbsp;
                         {/* <TouchableOpacity > */}
-                            <Text onPress={() => navigation.navigate(ROUTES.REGISTER)} style={styles.changeToSingUpBtn}>Sign up</Text>
+                        <Text onPress={() => navigation.navigate(ROUTES.REGISTER)} style={styles.changeToSingUpBtn}>Sign up</Text>
                         {/* </TouchableOpacity> */}
                     </Text>
                 </View>
