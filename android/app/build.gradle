@@ -72,6 +72,10 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+// configure .env file
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle" 
+def SECRETLINE_BACKEND_URL = project.hasProperty("SECRETLINE_BACKEND_URL") ? project.SECRETLINE_BACKEND_URL : System.getenv("SECRETLINE_BACKEND_URL")
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -84,6 +88,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+        buildConfigField "String", "SECRETLINE_BACKEND_URL", "\"${SECRETLINE_BACKEND_URL}\"" /// configure .env file
     }
     signingConfigs {
         debug {

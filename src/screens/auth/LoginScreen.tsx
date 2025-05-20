@@ -21,12 +21,33 @@ const Loginscreen = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (!email || !password) {
             Alert.alert('Error', 'Please fill all fields');
             return;
         }
-        
+        try {
+            const response = await fetch('https://secretline-server-web.onrender.com/api/v1/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    password,
+                }),
+            });
+            const data = await response.json();
+            if (response.ok) {
+                Alert.alert('Success', 'Login successful!');
+                navigation.navigate('Login'); // চাইলে এখানে পাঠিয়ে দিতে পারেন
+            } else {
+                Alert.alert('Error', data.message || 'Login failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            Alert.alert('Error', 'Something went wrong');
+        }
     };
 
     return (
