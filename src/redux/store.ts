@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { BaseApi } from './api/BaseApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE } from 'redux-persist';
 import authReducer from './features/auth/authSlice';
+import { baseApi } from './api/baseApi';
 
 const persistConfig = {
   key: 'auth',
@@ -12,7 +12,7 @@ const persistConfig = {
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 export const store = configureStore({
   reducer: {
-    [BaseApi.reducerPath]: BaseApi.reducer,
+    [baseApi.reducerPath]: baseApi.reducer,
      auth: persistedAuthReducer,
   },
     middleware: (getDefaultMiddlewares) =>
@@ -20,7 +20,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(BaseApi.middleware),
+    }).concat(baseApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

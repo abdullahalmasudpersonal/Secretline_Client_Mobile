@@ -12,14 +12,20 @@ import {
 } from 'react-native';
 import { ROUTES } from '../../constants/routes';
 import { NavigationProp } from '../../types/navigation.types';
+import { useLoginMutation } from '../../redux/features/auth/authApi';
+import { setUser, TUser } from '../../redux/features/auth/authSlice';
+import { verifyToken } from '../../utils/verifyToken';
+import { useAppDispatch } from '../../redux/hooks';
 
 //  type NavigationProp = NativeStackNavigationProp<RootStackParamList, typeof ROUTES.LOGIN>;
 
 const Loginscreen = () => {
     // const navigation = useNavigation<NavigationProp>();
     const navigation = useNavigation<NavigationProp<typeof ROUTES.LOGIN>>();
+    const dispatch = useAppDispatch();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [login] = useLoginMutation();
 
     const handleLogin = async () => {
         if (!email || !password) {
@@ -27,23 +33,31 @@ const Loginscreen = () => {
             return;
         }
         try {
-            const response = await fetch('https://secretline-server-web.onrender.com/api/v1/auth/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email,
-                    password,
-                }),
-            });
-            const data = await response.json();
-            if (response.ok) {
-                Alert.alert('Success', 'Login successful!');
-                navigation.navigate('Login'); // চাইলে এখানে পাঠিয়ে দিতে পারেন
-            } else {
-                Alert.alert('Error', data.message || 'Login failed');
-            }
+            const userInfo = {
+                email,
+                password,
+            };
+            const res = await login(userInfo).unwrap();
+            const user = verifyToken(res.data.accessToken) as TUser;
+            dispatch(setUser({ user: user, token: res.data.accessToken }));
+            // const user = verifyToken(res.data.accessToken) as TUser;
+            // const response = await fetch('https://secretline-server-web.onrender.com/api/v1/auth/login', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json',
+            //     },
+            //     body: JSON.stringify({
+            //         email,
+            //         password,
+            //     }),
+            // });
+            // const data = await response.json();
+            // if (response.ok) {
+            //     Alert.alert('Success', 'Login successful!');
+            //     navigation.navigate('Login'); // চাইলে এখানে পাঠিয়ে দিতে পারেন
+            // } else {
+            //     Alert.alert('Error', data.message || 'Login failed');
+            // }
         } catch (error) {
             console.error('Error:', error);
             Alert.alert('Error', 'Something went wrong');
