@@ -10,7 +10,8 @@ const Stack = createNativeStackNavigator();
 const AppNavigator = () => {
   //  const isLoggedIn = useAppSelector((state: RootState) => state.auth.isLoggedIn);
     const user = useAppSelector(selectCurrentUser);
-    console.log(user,'user');
+    console.log(user);
+    
 
   return (
      <Stack.Navigator screenOptions={{ headerShown: false }}>

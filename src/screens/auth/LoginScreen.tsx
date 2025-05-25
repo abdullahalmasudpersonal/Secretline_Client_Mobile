@@ -18,13 +18,12 @@ import { verifyToken } from '../../utils/verifyToken';
 import { useAppDispatch } from '../../redux/hooks';
 
 //  type NavigationProp = NativeStackNavigationProp<RootStackParamList, typeof ROUTES.LOGIN>;
-
 const Loginscreen = () => {
     // const navigation = useNavigation<NavigationProp>();
     const navigation = useNavigation<NavigationProp<typeof ROUTES.LOGIN>>();
     const dispatch = useAppDispatch();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('abdullah@gmail.com');
+    const [password, setPassword] = useState('123456');
     const [login] = useLoginMutation();
 
     const handleLogin = async () => {
@@ -40,24 +39,8 @@ const Loginscreen = () => {
             const res = await login(userInfo).unwrap();
             const user = verifyToken(res.data.accessToken) as TUser;
             dispatch(setUser({ user: user, token: res.data.accessToken }));
-            // const user = verifyToken(res.data.accessToken) as TUser;
-            // const response = await fetch('https://secretline-server-web.onrender.com/api/v1/auth/login', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({
-            //         email,
-            //         password,
-            //     }),
-            // });
-            // const data = await response.json();
-            // if (response.ok) {
-            //     Alert.alert('Success', 'Login successful!');
-            //     navigation.navigate('Login'); // চাইলে এখানে পাঠিয়ে দিতে পারেন
-            // } else {
-            //     Alert.alert('Error', data.message || 'Login failed');
-            // }
+            console.log(user,'user');
+            navigation.navigate(ROUTES.CHAT_LIST);
         } catch (error) {
             console.error('Error:', error);
             Alert.alert('Error', 'Something went wrong');
