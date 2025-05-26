@@ -72,9 +72,13 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+// ///////////////////////// coustom add start //////////////////////////////
 // configure .env file
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle" 
 def SECRETLINE_BACKEND_URL = project.hasProperty("SECRETLINE_BACKEND_URL") ? project.SECRETLINE_BACKEND_URL : System.getenv("SECRETLINE_BACKEND_URL")
+
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+//////////////////////////// custom add end /////////////////////////////
 
 android {
     ndkVersion rootProject.ext.ndkVersion

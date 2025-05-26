@@ -9,14 +9,11 @@ const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
   //  const isLoggedIn = useAppSelector((state: RootState) => state.auth.isLoggedIn);
-    const user = useAppSelector(selectCurrentUser);
-    console.log(user);
-    
+  const user = useAppSelector(selectCurrentUser);
 
   return (
-     <Stack.Navigator screenOptions={{ headerShown: false }}>
-     <Stack.Screen name="Auth" component={AuthNavigator} />
-       {user ? (
+    <Stack.Navigator screenOptions={{ headerShown: false}}>
+      {user ? (
         <>
           <Stack.Screen name="ChatList" component={ChatScreen} />
           {/* <Stack.Screen name="ChatRoom" component={ChatRoomScreen} /> */}
