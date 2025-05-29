@@ -4,6 +4,7 @@ import AuthNavigator from './AuthNavigator';
 import { useAppSelector } from '../redux/hooks';
 import { selectCurrentUser } from '../redux/features/auth/authSelectors';
 import ChatScreen from '../screens/chat/ChatScreen';
+import ChatRoomScreen from '../screens/chat/ChatRoomScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +17,7 @@ const AppNavigator = () => {
       {user ? (
         <>
           <Stack.Screen name="ChatList" component={ChatScreen} />
-          {/* <Stack.Screen name="ChatRoom" component={ChatRoomScreen} /> */}
+          <Stack.Screen name="ChatRoom" component={ChatRoomScreen} />
         </>
       ) : (
         <Stack.Screen name="Auth" component={AuthNavigator} />

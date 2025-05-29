@@ -17,7 +17,7 @@ const Header = () => {
     <>
       <StatusBar backgroundColor="#30333d" barStyle="light-content" />
       <View style={styles.container}>
-        <View style={styles.manuAtitleView}>
+        <View style={styles.maniAtitleView}>
           <Icon name="menu" size={30} color="white" />
           <Text style={styles.title}>Secretline</Text>
         </View>
@@ -33,9 +33,6 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
-    // padding: 12,
-    // paddingVertical: 0,
-    // paddingRight: 6,
     paddingLeft: 15,
     backgroundColor: '#30333d',
     // backgroundColor: 'gray',
@@ -44,7 +41,7 @@ const styles = StyleSheet.create({
      alignItems: 'center',
      justifyContent:'space-between',
   },
-  manuAtitleView: {
+  maniAtitleView: {
     flexDirection: 'row',
      alignItems: 'center',
   },
