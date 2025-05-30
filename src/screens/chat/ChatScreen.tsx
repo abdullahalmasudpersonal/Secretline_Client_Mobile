@@ -18,7 +18,7 @@ const ChatScreen = () => {
       <Header />
       <ScrollView style={styles.chatScreen}>
         {allUserChat?.data?.map((item: TChatUser,) => (
-          <Pressable key={item?.chatId} onPress={() => navigation.navigate({ name: ROUTES.CHAT_ROOM, params: { roomId: item.chatId } })}>
+          <Pressable key={item?.chatId} onPress={() => navigation.navigate({ name: ROUTES.CHAT_ROOM, params: { roomId: item?.chatId, activeUserId: item.userId } })}>
             <View style={styles.chattingUser} key={item?.chatId}>
               <Image style={styles.chatImage} source={{ uri: item?.profileImg }} />
               <View style={styles.chattingUserInfoView}>

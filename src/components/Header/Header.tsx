@@ -53,36 +53,3 @@ const styles = StyleSheet.create({
   },
 });
 
-// const styles = StyleSheet.create({
-//   container: {
-//     backgroundColor: '#075E54',
-//     padding: 12,
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     justifyContent: 'space-between',
-//   },
-//   info: {
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//     gap: 10,
-//   },
-//   avatar: {
-//     width: 40,
-//     height: 40,
-//     borderRadius: 20,
-//     marginHorizontal: 10,
-//   },
-//   name: {
-//     color: '#fff',
-//     fontWeight: '600',
-//     fontSize: 16,
-//   },
-//   status: {
-//     color: '#d4d4d4',
-//     fontSize: 12,
-//   },
-// });
-{/* <View style={styles.manuAtitleView}>
-          <Icon name="menu" size={30} color="white" />
-          <Text style={styles.title}>Secretline</Text>
-        </View> */}
