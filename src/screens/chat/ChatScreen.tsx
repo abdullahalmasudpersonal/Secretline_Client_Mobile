@@ -11,7 +11,6 @@ import { ROUTES } from '../../constants/routes';
 const ChatScreen = () => {
   const navigation = useNavigation<NavigationProp<typeof ROUTES.CHAT_LIST>>();
   const { data: allUserChat } = useGetAllChatUserQuery({});
-  console.log(allUserChat?.data, 'alluserchat');
 
   return (
     <>

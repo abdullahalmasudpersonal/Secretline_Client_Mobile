@@ -1,27 +1,21 @@
-import { StatusBar, StyleSheet, Text, View } from 'react-native';
-import { useAppSelector } from '../../redux/hooks';
-import { selectCurrentUser } from '../../redux/features/auth/authSelectors';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
+import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-
-// type Props = {
-//   onBack?: () => void;
-//   onOptionsPress?: () => void;
-// };
-
 const Header = () => {
-  const user = useAppSelector(selectCurrentUser);
-  console.log(user);
+  const navigation = useNavigation();
 
   return (
     <>
       <StatusBar backgroundColor="#30333d" barStyle="light-content" />
       <View style={styles.container}>
         <View style={styles.maniAtitleView}>
-          <Icon name="menu" size={30} color="white" />
+          <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
+            <Icon name="menu" size={30} color="white" />
+          </TouchableOpacity>
           <Text style={styles.title}>Secretline</Text>
         </View>
-         {/* <Icon name="menu" size={30} color="white" />
+        {/* <Icon name="menu" size={30} color="white" />
          <Text style={styles.title}>Secretline</Text> */}
         <Icon name="more-vert" size={30} color="white" />
       </View>
@@ -38,18 +32,18 @@ const styles = StyleSheet.create({
     // backgroundColor: 'gray',
     height: 57,
     flexDirection: 'row',
-     alignItems: 'center',
-     justifyContent:'space-between',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   maniAtitleView: {
     flexDirection: 'row',
-     alignItems: 'center',
+    alignItems: 'center',
   },
   title: {
-     color: 'white',
-     fontWeight: 'bold',
-     fontSize: 25,
-     marginLeft:20,
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 25,
+    marginLeft: 20,
   },
 });
 

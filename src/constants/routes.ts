@@ -2,6 +2,7 @@ export const ROUTES = {
   LOGIN: 'Login',
   REGISTER: 'Register',
   CHAT_LIST: 'ChatList',
+  DRAWER: 'Drawer',
   CHAT_ROOM: 'ChatRoom',
   AUTH: 'Auth',
 } as const;

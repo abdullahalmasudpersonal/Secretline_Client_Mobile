@@ -14,6 +14,7 @@ function App(): React.JSX.Element {
     return () => KeepAwake.deactivate();
   }, []);
 
+
   return (
     <>
       <GestureHandlerRootView style={styles.mainview}>

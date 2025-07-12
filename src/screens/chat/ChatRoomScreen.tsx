@@ -1,6 +1,6 @@
-import { Button, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import { /* FlatList, */ ScrollView } from 'react-native-gesture-handler';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useGetSingleChatUserQuery } from '../../redux/features/chat/chatApi';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -11,8 +11,6 @@ import { TextInput } from 'react-native';
 import { useAppSelector } from '../../redux/hooks';
 import { selectCurrentUser } from '../../redux/features/auth/authSelectors';
 import { useGetSingleUserQuery } from '../../redux/features/user/userApi';
-import EmojiSelector, { Categories } from 'react-native-emoji-selector';
-import Emoji from 'react-native-emoji';
 
 const ChatRoomScreen = () => {
     const route = useRoute();
@@ -40,6 +38,8 @@ const ChatRoomScreen = () => {
 
     // console.log(chatData);
 
+    // ///////// send message ///////////////////
+    const [sendmessage, setSendmessage] = useState<string>('');
 
     return (
         <>
@@ -69,9 +69,13 @@ const ChatRoomScreen = () => {
 
             {/* ------ Send message part ------------------ */}
             <View style={styles.sendMessageView}>
-               <Emoji name="coffee" style={{fontSize: 50}} />
-                <TextInput style={styles.messageInput} />
-                <Icon style={styles.sentIcon} name="send" size={25} color="white" />
+                <TextInput value={sendmessage} onChangeText={setSendmessage} style={styles.messageInput} multiline={true} numberOfLines={8} textAlignVertical="top" scrollEnabled={true} />
+                {
+                    sendmessage.trim().length > 0 ?
+                        <Icon style={styles.sentIcon} name="send" size={25} color="white" />
+                        :
+                        <Icon style={styles.sentVoiceIcon} name="keyboard-voice" size={25} color="white" />
+                }
             </View>
         </>
     );
@@ -146,25 +150,44 @@ const styles = StyleSheet.create({
 
     ////////////// send message part ////////////////
     sendMessageView: {
-        backgroundColor: 'rgb(54, 56, 63)',
-        height: 60,
+         backgroundColor: 'rgb(80, 76, 94)',
+        // backgroundColor: 'rgb(54, 56, 63)',
+        minHeight: 40,
         paddingHorizontal: 10,
+        paddingVertical: 5,
         flexDirection: 'row',
-        alignItems: 'center',
+        position: 'relative',
 
     },
     messageInput: {
-        width: 300,
-        height: 45,
-        maxHeight: 150,
+        width: 310,
+        minHeight: 30,
+        maxHeight: 200,
         paddingHorizontal: 10,
         borderRadius: 10,
+        fontSize: 18,
+        color: 'white',
         backgroundColor: 'rgb(101, 101, 122)',
-        // position: 'relative',
     },
     sentIcon: {
-        // position: 'absolute',
-        // marginRight: 10,
+        position: 'absolute',
+        bottom: 6,
+        right: 9,
+       backgroundColor: 'rgb(41, 41, 161)',
+        padding: 8,
+        paddingLeft: 12,
+        paddingVertical: 9,
+        borderRadius: 50,
+    },
+    sentVoiceIcon: {
+        position: 'absolute',
+        bottom: 6,
+        right: 9,
+        backgroundColor: 'rgb(41, 41, 161)',
+        padding: 8,
+        paddingHorizontal:10,
+        paddingVertical: 9,
+        borderRadius: 50,
     },
 });
 

@@ -5,6 +5,7 @@ export type RootStackParamList = {
   [ROUTES.LOGIN]: undefined;
   [ROUTES.REGISTER]: undefined;
   [ROUTES.CHAT_LIST]: undefined;
+  [ROUTES.DRAWER]: undefined;
   [ROUTES.CHAT_ROOM]: { roomId: string,activeUserId:string };
   [ROUTES.AUTH]: undefined;
 };
