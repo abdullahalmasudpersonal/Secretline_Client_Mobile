@@ -1,16 +1,15 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Text } from 'react-native';
 import ChatScreen from '../screens/chat/ChatScreen';
+// import { Text } from 'react-native';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   return (
-     <Drawer.Navigator initialRouteName="ChatList">
-        {/* <Text>Abdullah</Text> */}
+     <Drawer.Navigator /* initialRouteName="ChatList" */ screenOptions={{ headerShown: true }}>
+      {/* <Text>mass</Text> */}
       <Drawer.Screen name="ChatList" component={ChatScreen} />
-      {/* <Drawer.Screen name="Settings" component={SettingsScreen} /> */}
     </Drawer.Navigator>
   );
 };
