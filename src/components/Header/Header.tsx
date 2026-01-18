@@ -7,7 +7,7 @@ const Header = () => {
 
   return (
     <>
-      <StatusBar backgroundColor="#30333d" barStyle="light-content" />
+      <StatusBar backgroundColor="#3e4353" barStyle="light-content" />
       <View style={styles.container}>
         <View style={styles.maniAtitleView}>
           <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
   container: {
     paddingLeft: 15,
     paddingRight: 5,
-    backgroundColor: '#30333d',
+    // backgroundColor: '#30333d',
+    backgroundColor: '#3c404e',
     height: 57,
     flexDirection: 'row',
     alignItems: 'center',

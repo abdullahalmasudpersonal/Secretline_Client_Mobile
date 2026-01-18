@@ -5,7 +5,7 @@ import { useAppSelector } from '../redux/hooks';
 import { selectCurrentUser } from '../redux/features/auth/authSelectors';
 import ChatRoomScreen from '../screens/chat/ChatRoomScreen';
 // import DrawerNavigator from './DrawerNavigator';
-// import ChatScreen from '../screens/chat/ChatScreen';
+import ChatScreen from '../screens/chat/ChatScreen';
 import DrawerNavigator from './DrawerNavigator';
 // import { Text } from 'react-native';
 
@@ -18,8 +18,8 @@ const AppNavigator = () => {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {user ?
           <>
-            <Stack.Screen name="HomeDrawer" component={DrawerNavigator} />
-            {/* <Stack.Screen name="ChatList" component={ChatScreen} /> */}
+            {/* <Stack.Screen name="HomeDrawer" component={DrawerNavigator} /> */}
+            <Stack.Screen name="ChatList" component={ChatScreen} />
             <Stack.Screen name="ChatRoom" component={ChatRoomScreen} />
           </>
           :
